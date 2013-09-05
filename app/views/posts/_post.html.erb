@@ -1,6 +1,13 @@
 <p>
   <h2>
   	<%= link_to post.title, post %>
+
+  	<div class="pull-right">
+  		<%= form_for(Heart.new) do |f| %>
+  			<%= f.hidden_field :post_id, value: post.id %>
+  			<%= f.submit "❤", class: 'btn btn-danger' %>
+  		<% end %>
+  	</div>
   </h2>
 </p>
 
@@ -16,5 +23,9 @@
 <p class="text-muted">
 	<small>
 		Posted at: <%= post.created_at.to_formatted_s(:long) %>
+	</small>
+
+	<small class="pull-right">
+		<%= post.hearts.count %> hearts
 	</small>
 </p>
